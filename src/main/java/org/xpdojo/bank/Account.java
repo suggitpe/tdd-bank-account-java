@@ -16,17 +16,35 @@ public class Account {
         return new Account(initialBalance);
     }
 
-    public void deposit(Money money){
+    public void deposit(Money money) {
         balance = balance.add(money);
     }
 
     public void withdraw(Money money) {
-        if(money.isGreaterThan(balance))
+        if (money.isGreaterThan(balance))
             throw new IllegalStateException("Trying to withdrawn more than the balance");
         balance = balance.less(money);
     }
 
     public Money balance() {
         return balance;
+    }
+
+    public TransferObject transfer(Money amountToTransfer) {
+        return new TransferObject(amountToTransfer);
+    }
+
+    class TransferObject {
+
+        private final Money amount;
+
+        public TransferObject(Money amountToTransfer) {
+            amount = amountToTransfer;
+        }
+
+        public void to(Account receiver) {
+            withdraw(amount);
+            receiver.deposit(amount);
+        }
     }
 }

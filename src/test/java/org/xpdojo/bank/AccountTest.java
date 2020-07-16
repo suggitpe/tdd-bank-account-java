@@ -37,4 +37,13 @@ public class AccountTest {
                 () -> account.withdraw(anAmountOf(40.0))
         ).isInstanceOf(Exception.class);
     }
+
+    @Test
+    public void canTransferFromOneAccountToAnother(){
+        Account giver = anAccountWithABalanceOf(anAmountOf(100.0));
+        Account receiver = anAccountWithABalanceOf(anAmountOf(25.0));
+        giver.transfer(anAmountOf(25.0)).to(receiver);
+        assertThat(giver.balance()).isEqualTo(anAmountOf(75.0));
+        assertThat(receiver.balance()).isEqualTo(anAmountOf(50.0));
+    }
 }
