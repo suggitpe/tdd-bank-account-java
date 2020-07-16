@@ -20,4 +20,11 @@ public class AccountTest {
         account.deposit(anAmountOf(10.0));
         assertThat(account.balance()).isEqualTo(anAmountOf(10.0));
     }
+
+    @Test
+    public void withdrawAnAmountToDecreaseTheBalance(){
+        Account account = Account.anAccountWithABalanceOf(anAmountOf(35.0));
+        account.withdraw(anAmountOf(25.0));
+        assertThat(account.balance()).isEqualTo(anAmountOf(10.0));
+    }
 }
