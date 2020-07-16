@@ -21,6 +21,8 @@ public class Account {
     }
 
     public void withdraw(Money money) {
+        if(money.isGreaterThan(balance))
+            throw new IllegalStateException("Trying to withdrawn more than the balance");
         balance = balance.less(money);
     }
 
