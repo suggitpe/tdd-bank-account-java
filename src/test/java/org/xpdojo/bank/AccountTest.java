@@ -24,6 +24,14 @@ public class AccountTest {
     }
 
     @Test
+    public void depositMultipleAmounts(){
+        Account account = emptyAccount();
+        account.deposit(anAmountOf(20.0));
+        account.deposit(anAmountOf(30.0));
+        assertThat(account.balance()).isEqualTo(anAmountOf(50.0));
+    }
+
+    @Test
     public void withdrawAnAmountToDecreaseTheBalance(){
         Account account = anAccountWithABalanceOf(anAmountOf(35.0));
         account.withdraw(anAmountOf(25.0));
@@ -46,4 +54,6 @@ public class AccountTest {
         assertThat(giver.balance()).isEqualTo(anAmountOf(75.0));
         assertThat(receiver.balance()).isEqualTo(anAmountOf(50.0));
     }
+
+
 }
