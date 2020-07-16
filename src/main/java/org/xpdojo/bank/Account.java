@@ -8,7 +8,7 @@ public class Account {
         balance = initialBalance;
     }
 
-    public static Account emptyAccount() {
+    public static Account anEmptyAccount() {
         return new Account(Money.anAmountOf(0.0));
     }
 
